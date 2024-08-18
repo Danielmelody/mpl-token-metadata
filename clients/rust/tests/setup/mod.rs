@@ -7,7 +7,7 @@ pub use dirty_clone::*;
 use spl_token_2022::extension::{BaseState, StateWithExtensions};
 pub use token_manager::*;
 
-use solana_program::{program_error::ProgramError, pubkey::Pubkey};
+use solana_program::{program_error::ProgramError, program_pack::Pack, pubkey::Pubkey};
 use solana_program_test::{ProgramTest, ProgramTestContext};
 use solana_sdk::account::Account;
 
@@ -30,7 +30,7 @@ pub async fn get_account(context: &mut ProgramTestContext, pubkey: &Pubkey) -> A
         .expect("account not found")
 }
 
-pub fn unpack<S: BaseState>(
+pub fn unpack<S: BaseState + Pack>(
     account_data: &[u8],
 ) -> Result<StateWithExtensions<'_, S>, ProgramError> {
     StateWithExtensions::<S>::unpack(account_data)
