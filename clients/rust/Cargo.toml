@@ -17,7 +17,7 @@ serde = ["dep:serde", "dep:serde_with"]
 
 
 [dependencies]
-borsh = ">= 0.9, < 1.0"
+borsh = "0.10"
 num-derive = "0.4.2"
 num-traits = "^0.2"
 serde = { version = "^1.0", features = ["derive"], optional = true }
